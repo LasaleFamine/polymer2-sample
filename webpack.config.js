@@ -1,3 +1,5 @@
+// CURRENTLY NOT WORKING
+
 module.exports = {
   entry: {
      page1: "./src/index.js"
@@ -13,7 +15,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         // exclude: /(node_modules|bower_components)/,
-        exclude: ['node_modules','app/assets/bower','app/bundle.js'],
+        exclude: ['node_modules','src/assets/bower','src/app.bundle.js'],
         loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
         query: {
           presets: ['es2015']

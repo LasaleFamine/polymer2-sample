@@ -1,5 +1,8 @@
 <link rel="import" href="../../assets/bower/polymer/polymer-element.html">
 
+<!-- Units & Wrappers -->
+<link rel="import" href="../group-items/view.html">
+
 <dom-module id="app-poly2">
   <template>
   <style>
@@ -7,9 +10,16 @@
       display: block;
     }
   </style>
-    [[name]]
 
-    <button on-click="removeElement">Detach element</button>
+    <main>
+      <h1>[[head]]</h1>
+      <div>
+        <group-items items="[[groupedItems]]"></group-items>
+      </div>
+      <div class="actions">
+        <button on-click="removeElement">Detach element</button>
+      </div>
+    </main>
   </template>
 
   <script src="script.es6.js"></script>

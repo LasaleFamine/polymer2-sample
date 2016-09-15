@@ -1,0 +1,24 @@
+<dom-module id="group-items">
+  <template>
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+
+    <h1>Group items</h1>
+    [[items]]
+
+    <!-- Trying new <dom-repeat> -->
+    <ul>
+      <dom-repeat items="[[items]]">
+          <template>
+            <li>[[item]]</li>
+          </template>
+      </dom-repeat>
+    <ul>
+  </template>
+
+  <script src="script.es6.js"></script>
+
+</dom-module>
