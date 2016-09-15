@@ -1,0 +1,26 @@
+{
+  "name": "polymer2-sample",
+  "authors": [
+    "LasaleFamine"
+  ],
+  "description": "Sample app to learn Polymer 2.0-preview",
+  "main": "src/index.js",
+  "keywords": [
+    "polymer2",
+    "polymer",
+    "alpha",
+    "preview"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/LasaleFamine/polymer2-sample#readme",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "polymer/polymer#2.0-preview"
+  }
+}

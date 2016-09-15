@@ -1,0 +1,23 @@
+{
+  "name": "polymer2-sample",
+  "version": "0.0.1",
+  "description": "Sample app to learn Polymer 2.0-preview",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LasaleFamine/polymer2-sample.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "homepage": "https://github.com/LasaleFamine/polymer2-sample#readme",
+  "author": "LasaleFamine",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "webpack": "^1.13.2"
+  }
+}
