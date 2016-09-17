@@ -6,17 +6,28 @@
     }
   </style>
 
-    <h1>Group items</h1>
-    [[items]]
+    <h1>[[title]]</h1>
 
     <!-- Trying new <dom-repeat> -->
-    <ul>
-      <dom-repeat items="[[items]]">
-          <template>
-            <li>[[item]]</li>
-          </template>
-      </dom-repeat>
-    <ul>
+    <div class="group-wrapper">
+      <ul>
+        <dom-repeat items="[[items]]">
+            <template>
+              <li>[[item]]</li>
+            </template>
+        </dom-repeat>
+      <ul>
+    </div>
+
+    <!-- New <dom-if> -->
+    <dom-if if="[[actions]]">
+      <template>
+        <div class="actions">
+          <button on-click="removeItems" class="primary">Remove all items in the group</button>
+        </div>
+      </template>
+    </dom-if>
+
   </template>
 
   <script src="script.es6.js"></script>

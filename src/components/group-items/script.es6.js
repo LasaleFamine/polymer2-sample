@@ -7,6 +7,14 @@ class GroupItems extends Polymer.Element {
   static get config() {
    return {
      properties: {
+       title: {
+         type: String,
+         value: "<group-items>"
+       },
+       actions: {
+         type: Boolean,
+         value: false
+       },
        items: {
          type: Array,
          value: []
@@ -17,15 +25,25 @@ class GroupItems extends Polymer.Element {
   constructor() {
     super();
   }
+
+
   connectedCallback() {
     console.log("  connectedCallback() <group-items> this.items:", this.items);
+    console.log("  connectedCallback() <group-items> this.actions:", this.actions);
+    console.log("  connectedCallback() <group-items> this.title:", this.title);
   }
 
-  disconnectedCallback() {
-  }
+  // Lifecycle
+  disconnectedCallback() {  }
 
-  attributeChangedCallback() {
+  attributeChangedCallback() { }
+  // -----------
+
+  // Methods
+  removeItems() {
+    this.set('items', new Array())
   }
+  // -----------
 
 }
 

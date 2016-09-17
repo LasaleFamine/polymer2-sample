@@ -19,6 +19,14 @@ class AppPoly2 extends Polymer.Element {
        groupedItems: {
          type: Array,
          value: []
+       },
+       groupTitle: {
+         type: String,
+         value: ''
+       },
+       groupActions: {
+         type: Boolean,
+         value: false
        }
      }
     }
@@ -32,6 +40,8 @@ class AppPoly2 extends Polymer.Element {
 
     this.set('head', this.head.concat(' There are some console logs to read.'));
     this.set('groupedItems', ['one', 'two', 'three']);
+    this.set('groupTitle', "This items are awesome!");
+    this.set('groupActions', true);
     super.connectedCallback();
   }
 
