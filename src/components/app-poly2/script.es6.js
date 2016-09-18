@@ -27,6 +27,14 @@ class AppPoly2 extends Polymer.Element {
        groupActions: {
          type: Boolean,
          value: false
+       },
+       randomTitle: {
+         type: String,
+         value: ''
+       },
+       randomSource: {
+         type: String,
+         value: ''
        }
      }
     }
@@ -42,6 +50,9 @@ class AppPoly2 extends Polymer.Element {
     this.set('groupedItems', ['one', 'two', 'three']);
     this.set('groupTitle', "This items are awesome!");
     this.set('groupActions', true);
+
+    this.set('randomTitle', "Random content here")
+    this.set('randomSource', "http://localhost:8080/fakedata/fakeposts.json");
     super.connectedCallback();
   }
 
@@ -57,6 +68,10 @@ class AppPoly2 extends Polymer.Element {
   // Methds
   removeElement() {
     this.remove()
+  }
+
+  _onRandomContentReady(evt) {
+    console.log(evt.detail)
   }
 }
 

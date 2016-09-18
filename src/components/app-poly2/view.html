@@ -2,6 +2,7 @@
 
 <!-- Units & Wrappers -->
 <link rel="import" href="../group-items/view.html">
+<link rel="import" href="../random-content/view.html">
 
 <dom-module id="app-poly2">
   <template>
@@ -13,9 +14,20 @@
 
     <main>
       <h1>[[head]]</h1>
-      <div>
-        <group-items title="[[groupTitle]]" items="[[groupedItems]]" actions="[[groupActions]]"></group-items>
+
+      <div class="sample1">
+        <group-items title="[[groupTitle]]" items="[[groupedItems]]" actions="[[groupActions]]">
+          <div slot="description">
+            Simple description using new "slot" custom elements
+          </div>
+        </group-items>
       </div>
+
+      <div class="sample2">
+        <random-content title="[[randomTitle]]" source-link="[[randomSource]]" on-random-content-ready="_onRandomContentReady">
+        </random-content>
+      </div>
+
       <div class="actions">
         <button on-click="removeElement">Detach element</button>
       </div>

@@ -1,0 +1,33 @@
+<dom-module id="random-content">
+  <template>
+  <style>
+    :host {
+      display: block;
+    }
+    .wrapper-random {
+      display: block;
+      width: 100%
+    }
+    .random-element  {
+      display: inline-block;
+      width: 25%
+    }
+  </style>
+
+    <h1>[[title]]</h1>
+
+    <div class="wrapper-random">
+      <dom-repeat items="[[items]]">
+        <template>
+          <div class="random-element">
+            [[item.title]]
+          </div>
+        </template>
+      </dom-repeat>
+    <div>
+
+  </template>
+
+  <script src="script.es6.js"></script>
+
+</dom-module>
