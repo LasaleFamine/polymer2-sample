@@ -70,8 +70,12 @@ class AppPoly2 extends Polymer.Element {
     this.remove()
   }
 
+  // Listeners
   _onRandomContentReady(evt) {
-    console.log(evt.detail)
+    //console.log(evt.detail)
+    if(evt.detail.bubble) {
+      this.set('random.ready', true);
+    }
   }
 }
 

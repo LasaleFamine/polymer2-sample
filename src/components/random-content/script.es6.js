@@ -30,9 +30,10 @@ class RandomContent extends Polymer.Element {
 
   connectedCallback() {
     if(this.sourceLink) {
-      this.fetchElements(this.sourceLink).then((res) => {
+      this._fetchElements(this.sourceLink).then((res) => {
         console.log(" <random-content> connectedCallback fetchElements() res:", res);
-        this.set('items', res);
+        let items = this._randomizeArray(res);
+        this.set('items', items);
       })
     }
     super.connectedCallback();
@@ -46,15 +47,11 @@ class RandomContent extends Polymer.Element {
   // -----------
 
   // Methods
-  fetchElements(link) {
-    // fetch API new ES2015
-    return fetch(link).then((res) => {
-      console.log(" <random-content> fetch() res:", res)
-      return res.json()
-    }).catch((err) => {
-      console.warn(" <random-content> error in fetch(): ", err)
-    })
+  shuffle() {
+    let newItems = this._randomizeArray(this.items);
+    this.set('items', newItems);
   }
+
 
   // -----------
 
@@ -67,6 +64,36 @@ class RandomContent extends Polymer.Element {
 
   _itemsChanged(items) {
     this._dispatchReady(items)
+  }
+
+  // Privates
+  _randomizeArray(arrayOfObjs) {
+    let array = JSON.parse(JSON.stringify(arrayOfObjs));
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+
+  _fetchElements(link) {
+    // fetch API new ES2015
+    return fetch(link).then((res) => {
+      console.log(" <random-content> fetch() res:", res)
+      return res.json()
+    }).catch((err) => {
+      console.warn(" <random-content> error in fetch(): ", err)
+    })
   }
 }
 

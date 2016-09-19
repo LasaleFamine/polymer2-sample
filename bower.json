@@ -24,5 +24,6 @@
     "polymer": "polymer/polymer#2.0-preview",
     "paper-button": "PolymerElements/paper-button#2.0-preview",
     "paper-material": "PolymerElements/paper-material#^1.0.6",
+    "clab-ui-components": "LasaleFamine/contactlab-ui-components#refactor/polymer2"
   }
 }

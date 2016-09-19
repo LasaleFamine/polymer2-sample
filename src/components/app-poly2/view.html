@@ -4,6 +4,9 @@
 <link rel="import" href="../group-items/view.html">
 <link rel="import" href="../random-content/view.html">
 
+<!-- contactlab-ui-components (2.0) -->
+<link rel="import" href="../../assets/bower/clab-ui-components/spinner/view.html">
+
 <!-- Polymer Elements (2.0) -->
 <!-- NOTE: why not working? -->
 <!-- <link rel="import" href="../../assets/bower/paper-button/paper-button.html"> -->
@@ -14,6 +17,9 @@
   <style>
     :host {
       display: block;
+    }
+    .random-content {
+      position: relative;
     }
   </style>
 
@@ -28,7 +34,8 @@
         </group-items>
       </div>
 
-      <div class="sample2">
+      <div class="random-content">
+        <spinner-clab visible="[[!random.ready]]"></spinner-clab>
         <random-content title="[[random.randomTitle]]" source-link="[[random.randomSource]]" on-random-content-ready="_onRandomContentReady">
         </random-content>
       </div>
