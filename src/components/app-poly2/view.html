@@ -4,6 +4,11 @@
 <link rel="import" href="../group-items/view.html">
 <link rel="import" href="../random-content/view.html">
 
+<!-- Polymer Elements (2.0) -->
+<!-- NOTE: why not working? -->
+<!-- <link rel="import" href="../../assets/bower/paper-button/paper-button.html"> -->
+
+
 <dom-module id="app-poly2">
   <template>
   <style>
@@ -24,7 +29,7 @@
       </div>
 
       <div class="sample2">
-        <random-content title="[[randomTitle]]" source-link="[[randomSource]]" on-random-content-ready="_onRandomContentReady">
+        <random-content title="[[random.randomTitle]]" source-link="[[random.randomSource]]" on-random-content-ready="_onRandomContentReady">
         </random-content>
       </div>
 

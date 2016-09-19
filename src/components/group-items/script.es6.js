@@ -31,6 +31,7 @@ class GroupItems extends Polymer.Element {
     console.log("  connectedCallback() <group-items> this.items:", this.items);
     console.log("  connectedCallback() <group-items> this.actions:", this.actions);
     console.log("  connectedCallback() <group-items> this.title:", this.title);
+    super.connectedCallback();
   }
 
   // Lifecycle

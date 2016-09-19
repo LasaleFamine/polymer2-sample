@@ -35,6 +35,7 @@ class RandomContent extends Polymer.Element {
         this.set('items', res);
       })
     }
+    super.connectedCallback();
 
   }
 
@@ -58,8 +59,10 @@ class RandomContent extends Polymer.Element {
   // -----------
 
   _dispatchReady(items) {
+    const detail = items.length > 0 ? { 'bubble': true } : { 'bubble': false };
+    const evt = new CustomEvent('random-content-ready', { 'detail':  detail });
     // Testing classic dispatchEvent
-    this.dispatchEvent(new CustomEvent('random-content-ready'), items.length > 0 ? {bubble: true} : {bubble: false})
+    this.dispatchEvent(evt);
   }
 
   _itemsChanged(items) {
