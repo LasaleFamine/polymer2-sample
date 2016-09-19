@@ -6,6 +6,7 @@
 
 <!-- contactlab-ui-components (2.0) -->
 <link rel="import" href="../../assets/bower/clab-ui-components/spinner/view.html">
+<link rel="import" href="../../assets/bower/clab-ui-components/button/view.html">
 
 <!-- Polymer Elements (2.0) -->
 <!-- NOTE: why not working? -->
@@ -21,12 +22,18 @@
     .random-content {
       position: relative;
     }
+    .actions {
+      display: block;
+      height: 30px;
+      margin: 10px;
+    }
   </style>
 
     <main>
       <h1>[[head]]</h1>
 
-      <div class="sample1">
+      <div class="group-items">
+        <h1>group-items</h1>
         <group-items title="[[groupTitle]]" items="[[groupedItems]]" actions="[[groupActions]]">
           <div slot="description">
             Simple description using new "slot" custom elements
@@ -35,13 +42,17 @@
       </div>
 
       <div class="random-content">
+        <h1> random-content </h1>
         <spinner-clab visible="[[!random.ready]]"></spinner-clab>
-        <random-content title="[[random.randomTitle]]" source-link="[[random.randomSource]]" on-random-content-ready="_onRandomContentReady">
+        <random-content id="random" title="[[random.randomTitle]]" source-link="[[random.randomSource]]" on-random-content-ready="_onRandomContentReady">
         </random-content>
+        <div class="actions">
+          <button-clab on-btnclick="shuffleRandom" type="secondary">Shuffle from the app main component</button-clab>
+        </div>
       </div>
 
       <div class="actions">
-        <button on-click="removeElement">Detach element</button>
+        <button-clab on-btnclick="removeElement" type="error">Detach element</button-clab>
       </div>
     </main>
   </template>

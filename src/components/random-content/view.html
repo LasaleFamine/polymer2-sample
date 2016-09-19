@@ -1,34 +1,71 @@
 <dom-module id="random-content">
-  <template>
-  <style>
-    :host {
-      display: block;
-    }
-    .wrapper-random {
-      display: block;
-      width: 100%
-    }
-    .random-element  {
-      display: inline-block;
-      width: 25%
-    }
-  </style>
+    <template>
+        <style>
+             :host {
+                display: block;
+            }
 
-    <h1>[[title]]</h1>
+            .wrapper-random {
+                display: block;
+                width: 100%;
+            }
 
-    <div class="wrapper-random">
-      <dom-repeat items="[[items]]">
-        <template>
-          <div class="random-element">
-            <h2>[[item.id]]</h2>
-            [[item.title]]
-          </div>
-        </template>
-      </dom-repeat>
-    <div>
+            .header {
+                position: absolute;
+                top: 0;
+                /* scrolling out of view :-( */
+                z-index: 2;
+                background-color: pink;
+            }
 
-  </template>
+            .box-random {
+                position: relative;
+                width: 50%;
+                height: 400px;
+                background: gold;
+                margin: 0 auto;
+            }
 
-  <script src="script.es6.js"></script>
+            .random-elements {
+                overflow-y: scroll;
+                height: 100%;
+            }
+
+            .element {
+                position: relative;
+                display: inline-block;
+                width: 48%;
+            }
+
+            .row-action {
+              display: block;
+              padding: 15px;
+              height: 30px;
+            }
+        </style>
+
+        <div class="wrapper-random">
+            <div class="box-random">
+                <div class="header">[[title]]</div>
+                <div class="random-elements">
+                    <dom-repeat items="[[items]]">
+                        <template>
+                            <div class="element">
+                                <h2>[[item.id]]</h2> [[item.title]]
+                            </div>
+                        </template>
+                    </dom-repeat>
+                </div>
+            </div>
+            <dom-if if="[[actions]]">
+                <div class="row-action">
+                    <button-clab type="primary" on-btnclick="shuffle">Shuffle inside element!</button-clab>
+                </div>
+            </dom-if>
+            <div>
+
+    </template>
+
+    <script src="script.es6.js"></script>
 
 </dom-module>
