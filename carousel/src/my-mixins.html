@@ -1,0 +1,42 @@
+<script>
+
+  const MyMixin = subclass => class extends subclass {
+    static get config() {
+      return {
+        properties: {
+          selected: {
+            type: Object,
+            observer: '_selectedChanged'
+          }
+        }
+      };
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+
+      this.selected = this.firstElementChild;
+    }
+
+    _selectedChanged(selected, oldSelected) {
+      if(oldSelected) oldSelected.removeAttribute('selected');
+      if(selected) selected.setAttribute('selected', '');
+    }
+
+    _translateX(elem, x, transition) {
+      elem.style.display = 'block';
+      elem.style.transition = transition ? 'transform 0.2s' : '';
+      elem.style.transform = 'translate3d(' + x + 'px, 0, 0)';
+    }
+
+    _setupTransition(el, oldSelected, type) {
+      this._translateX(oldSelected, 0);
+      this._translateX(el, type === 'prev' ? -this.offsetWidth : this.offsetWidth);
+    }
+
+    _startTransition(el, oldSelected, type) {
+      this._translateX(oldSelected, type === 'prev' ? this.offsetWidth : -this.offsetWidth, true /* transition */);
+      this._translateX(el, 0, true /* transition */);
+    }
+  }
+</script>

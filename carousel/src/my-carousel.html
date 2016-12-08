@@ -1,0 +1,178 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="assets/bower/polymer/polymer-element.html">
+<link rel="import" href="my-mixins.html">
+
+<dom-module id="my-carousel">
+  <template>
+
+    <!-- Styles MUST be inside template -->
+    <style>
+
+      :host {
+        display: block;
+        position: relative;
+        overflow: hidden;
+      }
+
+      div > ::slotted(:not([selected])) {
+        display: none;
+      }
+
+      button {
+        position: absolute;
+        top: calc(50% - 20px);
+        padding: 0;
+        line-height: 40px;
+        border: none;
+        background: none;
+        color: #DDD;
+        font-size: 40px;
+        font-weight: bold;
+        opacity: 0.7;
+      }
+
+      button:hover,
+      button:focus {
+        opacity: 1;
+      }
+
+      #prevBtn {
+        left: 12px;
+      }
+
+      #nextBtn {
+        right: 12px;
+      }
+
+      button[disabled] {
+        opacity: 0.4;
+      }
+
+    </style>
+
+    <div>
+      <slot></slot>
+    </div>
+
+    <button id="prevBtn" on-click="previous"><<</button>
+    <button id="nextBtn" on-click="next">>></button>
+
+  </template>
+
+  <script>
+
+    // Extend Polymer.Element base class
+    class MyCarousel extends MyMixin(Polymer.Element) {
+
+      static get is() { return 'my-carousel' }
+
+      static get config() {
+        // properties, observers meta data
+        return {
+          properties: {
+            selected: {
+              type: Object,
+              observer: '_selectedChanged'
+            }
+          }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        requestAnimationFrame(this._installListeners.bind(this));
+      }
+
+      previous() {
+        const el = this.selected.previousElementSibling;
+        if (el) {
+          // Setup transition
+          const oldSelected = this.selected;
+          super._setupTransition(el, oldSelected, 'prev');
+          this.selected = el;
+          super._startTransition(el, oldSelected, 'prev');
+        }
+      }
+
+      next() {
+        const el = this.selected.nextElementSibling;
+        if (el) {
+          const oldSelected = this.selected;
+          super._setupTransition(el, oldSelected, 'next');
+          this.selected = el;
+          super._startTransition(el, oldSelected, 'next');
+        }
+      }
+
+      _selectedChanged(selected, oldSelected) {
+        super._selectedChanged(selected, oldSelected);
+
+        this.$.prevBtn.disabled = !selected.previousElementSibling;
+        this.$.nextBtn.disabled = !selected.nextElementSibling;
+
+        this._loadThreeImages(selected);
+      }
+
+      _loadThreeImages(selected) {
+        this._loadImage(selected);
+        this._loadImage(selected.previousElementSibling);
+        this._loadImage(selected.nextElementSibling);
+      }
+
+      _loadImage(img) {
+        if (img && !img.src) {
+          img.src = img.getAttribute('data-src');
+        }
+      }
+
+      _installListeners() {
+        this.addEventListener('transitioned', this._resetChildrenStyles.bind(this));
+        this.addEventListener('touchstart', this._touchstart.bind(this));
+        this.addEventListener('touchmove', this._touchmove.bind(this));
+        this.addEventListener('touchend', this._touchend.bind(this));
+      }
+
+      _resetChildrenStyles() {
+        let el = this.firstElementChild;
+        while (el) {
+          el.style.display = '';
+          el.style.transition = '';
+          el.style.transform = '';
+          el = el.nextElementSibling;
+        }
+      }
+
+      _touchstart(evt) {
+        if(this.childElementCount < 2) {
+          return;
+        }
+      }
+      _touchmove(evt) {
+        if(this.childElementCount < 2) {
+          return;
+        }
+      }
+      _touchend(evt) {
+        if(this.childElementCount < 2) {
+          return;
+        }
+      }
+
+    }
+
+    // Register custom element definition using standard platform API
+    customElements.define(MyCarousel.is, MyCarousel);
+
+  </script>
+</dom-module>
